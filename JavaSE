@@ -1,4 +1,10 @@
-public class SingletonTest1 {
+
+
+/**
+ * 单例模式————饿汉式
+ *
+ */
+ public class SingletonTest1 {
     public static void main(String[] args) {
         Bank b1 = Bank.getBankInstance();
         Bank b2 = Bank.getBankInstance();
@@ -20,4 +26,38 @@ class Bank{
         //return new Bank();也可
     }
 
+}
+
+
+/**
+ * 单例模式————懒汉式
+ *
+ * 饿汉式VS懒汉式
+ * 饿汉式：
+ *      好处：线程安全
+ *      坏处：类加载时间较长，因为需要创建实例对象；
+ * 懒汉式：
+ *      好处：延迟对象的创建
+ *      坏处：线程不安全；
+ */
+public class SingletonTest2 {
+    public static void main(String[] args) {
+        Order o1 = Order.getOrderInstance();
+        Order o2 = Order.getOrderInstance();
+        System.out.println(o1==o2);
+    }
+}
+
+class Order{
+    private Order(){}
+
+    private static Order instance = null;
+
+    public static Order getOrderInstance(){
+
+        if (instance == null){
+            instance = new Order();
+        }
+        return instance;
+    }
 }
