@@ -1,0 +1,23 @@
+public class SingletonTest1 {
+    public static void main(String[] args) {
+        Bank b1 = Bank.getBankInstance();
+        Bank b2 = Bank.getBankInstance();
+        System.out.println(b1==b2);
+    }
+}
+
+class Bank{
+
+    private Bank(){}
+    //构造器私有化；
+    
+    private static Bank instance = new Bank();
+    
+    //static修饰，通过类即可调用的方法。
+    //此类只有一个方法，返回该类的一个实例。
+    public  static Bank getBankInstance(){
+        return instance;
+        //return new Bank();也可
+    }
+
+}
